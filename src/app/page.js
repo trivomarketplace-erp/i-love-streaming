@@ -2,38 +2,32 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useState } from "react";
 import reviews from "../data/reviews";
 import MovieCard from "@/components/MovieCard";
 
-const [search, setSearch] = useState("");
-const filteredReviews = reviews.filter((review) =>
-
-  review.title.toLowerCase().includes(search.toLowerCase()) ||
-
-  review.category.toLowerCase().includes(search.toLowerCase())
-
-);
+export default function Home() {
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+
   const featuredReview = reviews[0];
+
   const topRated = [...reviews]
-  .sort((a, b) => b.rating - a.rating)
-  .slice(0, 4);
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
 
   const filteredReviews = reviews.filter((review) => {
 
-  const matchesSearch =
-    review.title.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch =
+      review.title.toLowerCase().includes(search.toLowerCase());
 
-  const matchesCategory =
-    selectedCategory === "Todos" ||
-    review.category === selectedCategory;
+    const matchesCategory =
+      selectedCategory === "Todos" ||
+      review.category === selectedCategory;
 
-  return matchesSearch && matchesCategory;
+    return matchesSearch && matchesCategory;
 
-});
+  });
 
   return (
     <main className="bg-black text-white min-h-screen">
