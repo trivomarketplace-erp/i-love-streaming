@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reviews from "../data/reviews";
 import MovieCard from "@/components/MovieCard";
 
@@ -9,9 +9,22 @@ export default function Home() {
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
 
-  const featuredReview = [...reviews]
-  .sort((a, b) => b.rating - a.rating)[0];
+  const interval = setInterval(() => {
+
+    setHeroIndex((prev) =>
+      prev === reviews.length - 1 ? 0 : prev + 1
+    );
+
+  }, 5000);
+
+  return () => clearInterval(interval);
+
+}, []);
+
+  const featuredReview = reviews[heroIndex];
 
   const topRated = [...reviews]
     .sort((a, b) => b.rating - a.rating)
