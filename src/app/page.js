@@ -177,10 +177,10 @@ export default function Home() {
             <button
               onClick={() => {
 
-  setActiveTrailer(featuredReview);
-  setShowTrailer(true);
-
-}}
+                setActiveTrailer(featuredReview);
+                setShowTrailer(true);
+              
+              }}
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 px-8 py-4 rounded-xl font-semibold transition"
             >
               ▶ Assistir Trailer
@@ -338,14 +338,19 @@ export default function Home() {
         </div>
 
             </footer>
-          {showTrailer && (
+            {showTrailer && activeTrailer?.trailer && (
           
             <div className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
           
               <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden">
           
                 <button
-                  onClick={() => setShowTrailer(false)}
+                 onClick={() => {
+
+                    setShowTrailer(false);
+                    setActiveTrailer(null);
+                  
+                    }}
                   className="absolute top-4 right-4 z-50 bg-red-600 hover:bg-red-700 w-10 h-10 rounded-full text-white font-bold"
                 >
                   ✕
@@ -364,7 +369,7 @@ export default function Home() {
           
             </div>
           
-)}
+          )}
         
     </main>
   );
