@@ -49,7 +49,16 @@ async function fetchReviews() {
  async function handleSubmit(e) {
 
   e.preventDefault();
-
+if (
+  !form.title ||
+  !form.category ||
+  !form.rating ||
+  !form.image ||
+  !form.trailer
+) {
+  alert("Preencha todos os campos.");
+  return;
+}
   const newReview = {
     ...form,
     slug: form.title.toLowerCase().replaceAll(" ", "-"),
