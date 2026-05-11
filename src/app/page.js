@@ -10,6 +10,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [heroIndex, setHeroIndex] = useState(0);
+  const [showTrailer, setShowTrailer] = useState(false);
   useEffect(() => {
 
   const interval = setInterval(() => {
@@ -170,6 +171,13 @@ export default function Home() {
               Últimos Lançamentos
             </button>
 
+            <button
+              onClick={() => setShowTrailer(true)}
+              className="bg-white/10 backdrop-blur-md hover:bg-white/20 px-8 py-4 rounded-xl font-semibold transition"
+            >
+              ▶ Assistir Trailer
+            </button>
+
           </div>
 
         </div>
@@ -321,8 +329,33 @@ export default function Home() {
 
         </div>
 
-      </footer>
-
+            </footer>
+          {showTrailer && (
+          
+            <div className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-md flex items-center justify-center p-6">
+          
+              <div className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden">
+          
+                <button
+                  onClick={() => setShowTrailer(false)}
+                  className="absolute top-4 right-4 z-50 bg-red-600 hover:bg-red-700 w-10 h-10 rounded-full text-white font-bold"
+                >
+                  ✕
+                </button>
+          
+                <iframe
+                  src={featuredReview.trailer}
+                  title={featuredReview.title}
+                  className="w-full h-full"
+                  allowFullScreen
+                />
+          
+              </div>
+          
+            </div>
+          
+)}
+        
     </main>
   );
 }
