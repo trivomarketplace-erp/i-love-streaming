@@ -48,8 +48,6 @@ if (reviews.length > 0) {
 
 }
 
-  return () => clearInterval(interval);
-
 }, [showTrailer, reviews.length]);
 
   const featuredReview = reviews[heroIndex] || {};
