@@ -49,29 +49,44 @@ export default function Home() {
     </div>
 
     {/* MENU DESKTOP */}
-    <nav className="hidden md:flex gap-8 text-sm font-semibold text-zinc-300">
+  <nav className="flex gap-6 text-sm font-medium text-zinc-300">
 
-      <Link href="/" className="hover:text-red-500 transition">
-      Início
-      </Link>
+  <Link
+    href="/"
+    className="hover:text-white transition"
+  >
+    Início
+  </Link>
 
-      <a href="#" className="hover:text-red-500 transition">
-        Filmes
-      </a>
+  <Link
+    href="/movies"
+    className="hover:text-white transition"
+  >
+    Filmes
+  </Link>
 
-      <a href="#" className="hover:text-red-500 transition">
-        Séries
-      </a>
+  <Link
+    href="/series"
+    className="hover:text-white transition"
+  >
+    Séries
+  </Link>
 
-      <a href="#" className="hover:text-red-500 transition">
-      Rankings
-      </a>
+  <Link
+    href="/top-rated"
+    className="hover:text-white transition"
+  >
+    Rankings
+  </Link>
 
-      <a href="#" className="hover:text-red-500 transition">
-        Lançamentos
-      </a>
+  <Link
+    href="/latest"
+    className="hover:text-white transition"
+  >
+    Lançamentos
+  </Link>
 
-    </nav>
+</nav>
 
     {/* MENU MOBILE */}
     <button className="md:hidden bg-zinc-900 px-4 py-2 rounded-xl">
