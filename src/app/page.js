@@ -11,6 +11,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [heroIndex, setHeroIndex] = useState(0);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [activeTrailer, setActiveTrailer] = useState(null);
  useEffect(() => {
 
   if (showTrailer) return;
@@ -174,7 +175,12 @@ export default function Home() {
             </button>
 
             <button
-              onClick={() => setShowTrailer(true)}
+              onClick={() => {
+
+  setActiveTrailer(featuredReview);
+  setShowTrailer(true);
+
+}}
               className="bg-white/10 backdrop-blur-md hover:bg-white/20 px-8 py-4 rounded-xl font-semibold transition"
             >
               ▶ Assistir Trailer
@@ -346,8 +352,8 @@ export default function Home() {
                 </button>
           
                 <iframe
-                  src={featuredReview.trailer}
-                  title={featuredReview.title}
+                  src={activeTrailer?.trailer}
+                  title={activeTrailer?.title}
                   className="w-full h-full"
                   allowFullScreen
                 />
