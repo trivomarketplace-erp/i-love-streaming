@@ -120,12 +120,18 @@ export default function Home() {
       {/* HERO */}
       <section className="relative min-h-screen flex items-center px-6 md:px-10">
 
-        <div className="absolute inset-0">
+       <div className="absolute inset-0">
+        
           <img
             src={featuredReview.image}
-            alt="Cinema"
-            className="w-full h-full object-cover opacity-40"
+            alt={featuredReview.title}
+            className="w-full h-full object-cover opacity-40 transition-all duration-1000 scale-105"
           />
+        
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-black/20" />
+        
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
+        
         </div>
 
         <div className="relative z-10 max-w-3xl">
