@@ -11,7 +11,9 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [heroIndex, setHeroIndex] = useState(0);
   const [showTrailer, setShowTrailer] = useState(false);
-  useEffect(() => {
+ useEffect(() => {
+
+  if (showTrailer) return;
 
   const interval = setInterval(() => {
 
@@ -23,7 +25,7 @@ export default function Home() {
 
   return () => clearInterval(interval);
 
-}, []);
+}, [showTrailer]);
 
   const featuredReview = reviews[heroIndex];
 
