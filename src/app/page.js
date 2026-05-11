@@ -34,6 +34,8 @@ export default function Home() {
 
   if (showTrailer) return;
 
+if (reviews.length > 0) {
+
   const interval = setInterval(() => {
 
     setHeroIndex((prev) =>
@@ -44,7 +46,11 @@ export default function Home() {
 
   return () => clearInterval(interval);
 
-}, [showTrailer]);
+}
+
+  return () => clearInterval(interval);
+
+}, [showTrailer, reviews.length]);
 
   const featuredReview = reviews[heroIndex] || {};
 
