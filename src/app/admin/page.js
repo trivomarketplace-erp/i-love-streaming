@@ -8,7 +8,6 @@ export default function AdminPage() {
   const [reviews, setReviews] = useState([]);
 
   const [form, setForm] = useState({
-    
     title: "",
     category: "",
     rating: "",
@@ -18,24 +17,24 @@ export default function AdminPage() {
   });
 
   useEffect(() => {
-  fetchReviews();
-}, []);
+    fetchReviews();
+  }, []);
 
-async function fetchReviews() {
-  const { data, error } = await supabase
-    .from("reviews")
-    .select("*")
-    .order("created_at", { ascending: false });
+  async function fetchReviews() {
 
-  if (error) {
-    console.log(error);
-    return;
+    const { data, error } = await supabase
+      .from("reviews")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.log("ERRO FETCH:", error);
+      alert(error.message);
+      return;
+    }
+
+    setReviews(data);
   }
-
-  setReviews(data);
-}
-
- 
 
   function handleChange(e) {
 
@@ -46,54 +45,57 @@ async function fetchReviews() {
 
   }
 
- async function handleSubmit(e) {
+  async function handleSubmit(e) {
 
-  e.preventDefault();
-if (
-  !form.title ||
-  !form.category ||
-  !form.rating ||
-  !form.image ||
-  !form.trailer
-) {
-  alert("Preencha todos os campos.");
-  return;
-}
-  const newReview = {
-    ...form,
-    slug: form.title.toLowerCase().replaceAll(" ", "-"),
-    year: "2026",
-    type: "movie",
-    content: form.description,
-  };
+    e.preventDefault();
 
-  const { error } = await supabase
-    .from("reviews")
-    .insert([newReview]);
+    if (
+      !form.title ||
+      !form.category ||
+      !form.rating ||
+      !form.image ||
+      !form.trailer
+    ) {
+      alert("Preencha todos os campos.");
+      return;
+    }
 
-  if (error) {
-    console.log(error);
-    return;
+    const newReview = {
+      ...form,
+      slug: form.title.toLowerCase().replaceAll(" ", "-"),
+      year: "2026",
+      type: "movie",
+      content: form.description,
+    };
+
+    const { error } = await supabase
+      .from("reviews")
+      .insert([newReview]);
+
+    if (error) {
+      console.log("ERRO SUPABASE:", error);
+      alert(error.message);
+      return;
+    }
+
+    fetchReviews();
+
+    setForm({
+      title: "",
+      category: "",
+      rating: "",
+      image: "",
+      trailer: "",
+      description: "",
+    });
+
   }
 
-  fetchReviews();
-
-  setForm({
-    title: "",
-    category: "",
-    rating: "",
-    image: "",
-    trailer: "",
-    description: "",
-  });
-
-}
   return (
     <main className="min-h-screen bg-black text-white p-10">
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-        {/* FORM */}
         <div className="bg-zinc-900 rounded-3xl p-8 h-fit">
 
           <h1 className="text-3xl font-bold mb-8">
@@ -169,7 +171,6 @@ if (
 
         </div>
 
-        {/* LIST */}
         <div className="lg:col-span-2">
 
           <h2 className="text-3xl font-bold mb-8">
@@ -181,7 +182,7 @@ if (
             {reviews.map((review) => (
 
               <div
-                key={review.slug}
+                key={review.id}
                 className="bg-zinc-900 rounded-2xl p-5 flex items-center gap-5"
               >
 
