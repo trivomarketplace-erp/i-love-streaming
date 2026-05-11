@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import reviewsData from "@/data/reviews";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function AdminPage() {
 
-  const [reviews, setReviews] = useState(reviewsData);
+  const [reviews, setReviews] = useState([]);
 
   const [form, setForm] = useState({
+    
     title: "",
     category: "",
     rating: "",
@@ -15,6 +16,26 @@ export default function AdminPage() {
     trailer: "",
     description: "",
   });
+
+  useEffect(() => {
+  fetchReviews();
+}, []);
+
+async function fetchReviews() {
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  setReviews(data);
+}
+
+ 
 
   function handleChange(e) {
 
