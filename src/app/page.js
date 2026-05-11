@@ -2,10 +2,18 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useState } from "react";
 import reviews from "../data/reviews";
 import MovieCard from "@/components/MovieCard";
 
-export default function Home() {
+const [search, setSearch] = useState("");
+const filteredReviews = reviews.filter((review) =>
+
+  review.title.toLowerCase().includes(search.toLowerCase()) ||
+
+  review.category.toLowerCase().includes(search.toLowerCase())
+
+);
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -163,7 +171,7 @@ export default function Home() {
               placeholder="Buscar filmes ou séries..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-5 text-white placeholder:text-zinc-500 focus:outline-none focus:border-red-600 transition"
+              className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-5 text-white outline-none focus:border-red-600 transition"
             />
 
           </div>
