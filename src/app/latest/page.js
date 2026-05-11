@@ -8,6 +8,7 @@ export default function LatestPage() {
   );
 
   return (
+
     <main className="min-h-screen bg-black text-white px-10 py-20">
 
       <div className="mb-14">
@@ -21,7 +22,7 @@ export default function LatestPage() {
         </h1>
 
         <p className="text-zinc-400 text-xl max-w-3xl">
-          Descubra os filmes e séries mais recentes da plataforma.
+          Descubra os filmes e séries mais recentes adicionados na plataforma.
         </p>
 
       </div>
@@ -40,5 +41,6 @@ export default function LatestPage() {
       </div>
 
     </main>
+
   );
 }
