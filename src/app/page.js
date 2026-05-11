@@ -14,6 +14,7 @@ export default function Home() {
   const [activeTrailer, setActiveTrailer] = useState(null);
  useEffect(() => {
 
+
   if (showTrailer) return;
 
   const interval = setInterval(() => {
