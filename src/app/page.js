@@ -13,7 +13,23 @@ export default function Home() {
   const [showTrailer, setShowTrailer] = useState(false);
   const [activeTrailer, setActiveTrailer] = useState(null);
  useEffect(() => {
+   async function fetchReviews() {
 
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  setReviews(data);
+
+}
+
+   fetchReviews();
 
   if (showTrailer) return;
 
@@ -29,7 +45,7 @@ export default function Home() {
 
 }, [showTrailer]);
 
-  const featuredReview = reviews[heroIndex];
+  const featuredReview = reviews[heroIndex] || {};
 
   const topRated = [...reviews]
     .sort((a, b) => b.rating - a.rating)
@@ -127,11 +143,15 @@ export default function Home() {
 
        <div className="absolute inset-0">
         
+         {featuredReview.image && (
+      
           <img
             src={featuredReview.image}
             alt={featuredReview.title}
             className="w-full h-full object-cover opacity-40 transition-all duration-1000 scale-105"
           />
+
+        )}
         
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-black/20" />
         
