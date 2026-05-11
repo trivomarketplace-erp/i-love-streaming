@@ -352,9 +352,11 @@ export default function Home() {
                 </button>
           
                 <iframe
+                  key={activeTrailer?.slug}
                   src={activeTrailer?.trailer}
                   title={activeTrailer?.title}
                   className="w-full h-full"
+                  allow="autoplay; encrypted-media"
                   allowFullScreen
                 />
           
