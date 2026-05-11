@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import reviews from "../data/reviews";
+import { supabase } from "@/lib/supabase";
 import MovieCard from "@/components/MovieCard";
 
 export default function Home() {
