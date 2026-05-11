@@ -27,11 +27,11 @@ export default function AdminPage() {
       .select("*")
       .order("created_at", { ascending: false });
 
-    if (error) {
-      console.log("ERRO FETCH:", error);
-      alert(error.message);
-      return;
-    }
+      if (error) {
+        console.log("ERRO SUPABASE:", error);
+        alert(error.message);
+        return;
+      }
 
     setReviews(data);
   }
@@ -72,7 +72,7 @@ export default function AdminPage() {
       .from("reviews")
       .insert([newReview]);
 
-    if (error) {
+       if (error) {
       console.log("ERRO SUPABASE:", error);
       alert(error.message);
       return;
