@@ -5,6 +5,7 @@ const reviews = [
     category: "Ficção Científica",
     type: "movie",
     rating: "9.9",
+    trailer: "https://www.youtube.com/embed/HhesaQXLuRY",
     year: "2026",
 
     image:
