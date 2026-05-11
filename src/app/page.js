@@ -10,7 +10,8 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
 
-  const featuredReview = reviews[0];
+  const featuredReview = [...reviews]
+  .sort((a, b) => b.rating - a.rating)[0];
 
   const topRated = [...reviews]
     .sort((a, b) => b.rating - a.rating)
