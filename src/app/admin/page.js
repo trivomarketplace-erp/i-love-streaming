@@ -46,31 +46,39 @@ async function fetchReviews() {
 
   }
 
-  function handleSubmit(e) {
+ async function handleSubmit(e) {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    const newReview = {
-      ...form,
-      slug: form.title.toLowerCase().replaceAll(" ", "-"),
-      year: "2026",
-      type: "movie",
-      content: form.description,
-    };
+  const newReview = {
+    ...form,
+    slug: form.title.toLowerCase().replaceAll(" ", "-"),
+    year: "2026",
+    type: "movie",
+    content: form.description,
+  };
 
-    setReviews([newReview, ...reviews]);
+  const { error } = await supabase
+    .from("reviews")
+    .insert([newReview]);
 
-    setForm({
-      title: "",
-      category: "",
-      rating: "",
-      image: "",
-      trailer: "",
-      description: "",
-    });
-
+  if (error) {
+    console.log(error);
+    return;
   }
 
+  fetchReviews();
+
+  setForm({
+    title: "",
+    category: "",
+    rating: "",
+    image: "",
+    trailer: "",
+    description: "",
+  });
+
+}
   return (
     <main className="min-h-screen bg-black text-white p-10">
 
