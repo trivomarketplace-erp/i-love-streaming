@@ -7,6 +7,7 @@ import MovieCard from "@/components/MovieCard";
 
 export default function Home() {
 
+  const [reviews, setReviews] = useState([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [heroIndex, setHeroIndex] = useState(0);
