@@ -1,16 +1,18 @@
-import reviews from "@/data/reviews";
+import { supabase } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export default async function ReviewPage({ params }) {
 
-  const { slug } = await params;
+  const { slug } = params;
 
-  const review = reviews.find(
-    (item) => item.slug === slug
-  );
+  const { data: review, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
-  if (!review) {
+  if (error || !review) {
     notFound();
   }
 
@@ -86,7 +88,7 @@ export default async function ReviewPage({ params }) {
         <div className="space-y-10 text-zinc-300 text-xl leading-[2.2rem]">
 
           {review.content
-            .split("\n")
+            ?.split("\n")
             .filter((paragraph) => paragraph.trim() !== "")
             .map((paragraph, index) => (
 
