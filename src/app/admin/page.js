@@ -65,7 +65,7 @@ export default function AdminPage() {
       slug: form.title.toLowerCase().replaceAll(" ", "-"),
       year: "2026",
       type: "movie",
-      content: form.description,
+      description: form.description,
     };
 
     const { error } = await supabase
