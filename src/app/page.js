@@ -175,7 +175,7 @@ if (reviews.length > 0) {
           </h2>
 
           <p className="text-xl text-zinc-300 mb-8">
-            {featuredReview.description}
+            {featuredReview.content}
           </p>
 
           <div className="flex items-center gap-4 mb-8">
