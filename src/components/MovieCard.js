@@ -45,7 +45,7 @@ export default function MovieCard({ review }) {
 
           {/* DESCRIPTION */}
           <p className="text-zinc-300 text-sm leading-7 line-clamp-3 mb-6">
-            {review.description}
+            {review.content}
           </p>
 
           {/* BUTTON */}
