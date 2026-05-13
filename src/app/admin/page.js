@@ -62,7 +62,11 @@ export default function AdminPage() {
 
     const newReview = {
       ...form,
-      slug: form.title.toLowerCase().replaceAll(" ", "-"),
+      slug: form.title   
+        .toLowerCase()   
+        .normalize("NFD")   
+        .replace(/[\u0300-\u036f]/g, "")   
+        .replaceAll(" ", "-"),
       year: "2026",
       type: "movie",
       description: form.description,
