@@ -15,7 +15,7 @@ export default function LoginPage() {
 
     if (password === "123456") {
 
-      localStorage.setItem("admin-auth", "true");
+      document.cookie = "admin-auth=true; path=/";
 
       router.push("/admin");
 
